@@ -1,0 +1,119 @@
+@import "tailwindcss";
+
+@theme {
+  /* لوحة ألوان مقهى دافئة */
+  --color-cream: #f5efe3;
+  --color-paper: #fdfaf2;
+  --color-sand: #ece2cd;
+  --color-ink: #231710;
+  --color-coffee: #3a2a1b;
+  --color-mocha: #6b5138;
+  --color-gold: #b8862f;
+  --color-golddeep: #96691c;
+  --color-goldsoft: #efe0bb;
+  --color-leaf: #2e7d5b;
+  --color-leafsoft: #dcefe4;
+  --color-terra: #bd5638;
+  --color-terrasoft: #fbe2d8;
+  --color-amber: #a97608;
+  --color-ambersoft: #f9ecc8;
+}
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: "Cairo", "Segoe UI", system-ui, sans-serif;
+  background:
+    radial-gradient(1200px 500px at 80% -10%, rgba(184, 134, 47, 0.1), transparent 60%),
+    radial-gradient(900px 400px at 10% 110%, rgba(58, 42, 27, 0.08), transparent 60%),
+    var(--color-cream);
+  color: var(--color-ink);
+  min-height: 100dvh;
+}
+
+/* ظلال وبطاقات */
+.card {
+  background: var(--color-paper);
+  border: 1px solid rgba(58, 42, 27, 0.09);
+  border-radius: 1.1rem;
+  box-shadow: 0 1px 2px rgba(35, 23, 16, 0.05), 0 8px 24px -16px rgba(35, 23, 16, 0.25);
+}
+
+.press {
+  transition:
+    transform 0.12s ease,
+    box-shadow 0.2s ease,
+    opacity 0.15s ease,
+    background-color 0.15s ease;
+}
+.press:active {
+  transform: scale(0.965);
+}
+
+/* شريط تمرير رفيع أنيق */
+.slim-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+.slim-scroll::-webkit-scrollbar-thumb {
+  background: rgba(107, 81, 56, 0.35);
+  border-radius: 99px;
+}
+
+/* نبضة عند إضافة صنف */
+@keyframes pop {
+  0% {
+    transform: scale(0.94);
+    background-color: var(--color-goldsoft);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.pop {
+  animation: pop 0.35s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-8px); }
+  40%, 80% { transform: translateX(8px); }
+}
+.shake {
+  animation: shake 0.45s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.fade-up {
+  animation: fadeUp 0.3s ease both;
+}
+
+/* طباعة الإيصال: إظهار الإيصال فقط */
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  #receipt-print,
+  #receipt-print * {
+    visibility: visible;
+  }
+  #receipt-print {
+    position: absolute;
+    inset: 0;
+    width: 72mm;
+    padding: 4mm;
+    background: #fff;
+    color: #000;
+  }
+}
